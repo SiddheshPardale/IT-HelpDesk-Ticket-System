@@ -21,22 +21,24 @@ while True:
             Login1 = Login.Login()
     
             if Login1:
+                role = Login1.get("role")
                 print("[bold green]Login successful![/bold green]")
                 print(f"\n[bold green]Welcome: {Login1["name"]}![/bold green]")
                 print(f"[bold green]Role: {Login1["role"]}[/bold green]")
 
-            if Login1["role"] == "EMPLOYEE":
-                Employee.EmployeeMenu(Login1["user_id"])
-                break
-            elif Login1["role"] == "TECHNICIAN":
-                Technician.TechnicianMenu(Login1["user_id"])
-                break
-            elif Login1["role"] == "ADMIN":
-                Admin.AdminMenu(Login1["user_id"])
-                break
+                if role == "EMPLOYEE":
+                    Employee.EmployeeMenu(Login1["user_id"])
+                    break
+                elif role == "TECHNICIAN":
+                    Technician.TechnicianMenu(Login1["user_id"])
+                    break
+                elif role == "ADMIN":
+                    Admin.AdminMenu(Login1["user_id"])
+                    break
+                else:
+                    console.print("[red]Invalid or unrecognized user role.[/red]")
             else:
-                print("Create Account With Correct Role ")
-                break
+                console.print("[red]Login failed. Please check your credentials and try again.[/red]")
 
         case 3:
             print("Thank You....")
